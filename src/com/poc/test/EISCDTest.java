@@ -20,9 +20,10 @@ import com.poc.beans.Bank;
 import com.poc.beans.BankOffice;
 import com.poc.handler.MyErrorHandler;
 import com.poc.handler.NewHandlar;
+import com.poc.service.EISCDService;
 
 public class EISCDTest {
-
+	
 	static NewHandlar newHandlar;
 	static String sourcePath ="D:/FOLDER_TASK/STSEclipsPOC/EISCDUploader/src/com/poc/resource";
 	public static File lastFileModified(String dir) { // get lastest modify file
@@ -76,7 +77,7 @@ public class EISCDTest {
 		// printing file name and size of file
 		// Check if file not avilable or not at DTU location
 		if (lastFileModified != null) {
-			// System.out.println("---"+lastFileModified);
+			 System.out.println("---File name--"+lastFileModified.getName());
 			if (lastFileModified.length() <= 0 && lastFileModified.isFile()) // 0 byte file check.
 			{
 				System.out.println(lastFileModified + "is 0 byte file");
@@ -106,7 +107,21 @@ public class EISCDTest {
 	}
 
 	public static void main(String[] args) {
-
+		long startTime = System.currentTimeMillis();
+		
+		validationAndLoad();
+		moveFileToArchive(sourcePath,sourcePath+"/fp");	
+		
+		ArrayList<Bank> fullList = newHandlar.getFullList();
+		EISCDService eiscdService = new EISCDService();
+		boolean process = eiscdService.process(fullList);
+		if(process){
+			System.out.println("record insert successfully");
+		}else{
+			System.out.println("getting error while storing data to DB");
+		}
+/*
+		
 		String FILENAME = "D:/FOLDER_TASK/STSEclipsPOC/EISCDUploader/src/com/poc/resource/output/filename.txt";
 
 		BufferedWriter bw = null;
@@ -118,7 +133,16 @@ public class EISCDTest {
 			//Call validation and load method for checking latest modified file and check 0 byte file
 			validationAndLoad();
 			moveFileToArchive(sourcePath,sourcePath+"/fp");	
+			
 			ArrayList<Bank> fullList = newHandlar.getFullList();
+			EISCDService eiscdService = new EISCDService();
+			boolean process = eiscdService.process(fullList);
+			if(process){
+				System.out.println("record insert successfully");
+			}else{
+				System.out.println("getting error while storing data to DB");
+			}
+			
 			Iterator<Bank> iterator = fullList.iterator();
 			
 			// iterate and write into file 
@@ -153,6 +177,9 @@ public class EISCDTest {
 			}
 
 		}
-
+*/
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("total taken time : "+totalTime/1000);
 	}
 }

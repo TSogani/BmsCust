@@ -84,9 +84,7 @@ public class NewHandlar extends DefaultHandler {
 	    if (qName.equalsIgnoreCase("Bank")) {
 	    	
 	    	eiscDmapping.setBankoffices(bankOffices);
-	    	System.out.println("total no of ");
 	    	System.out.println("total no if offices : "+bankOffices.size());
-	    	System.out.println("total no of bank : "+fullList.size());
 	    	fullList.add(eiscDmapping);
 	    	
 	    	bankOffices = null;
@@ -109,9 +107,9 @@ public class NewHandlar extends DefaultHandler {
 	    }
 	    if(qName.equalsIgnoreCase("Data")){
 	    	System.out.println("Total number of Bnaks :"+fullList.size());
-	    	System.out.println("Total no count is"+officeCount);
+	    	//System.out.println("Total no count is"+getEiscDmapping().getBankoffices().size());
 	    	if(fullList.contains(eiscDmapping)){
-	    		
+	   		
 	    	}
 	    	Iterator<Bank> iterator = fullList.iterator();
 	    	int totalOfficeSize=0;

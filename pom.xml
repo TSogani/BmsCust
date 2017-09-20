@@ -10,6 +10,20 @@
 	    <artifactId>spring-context</artifactId>
 	    <version>3.0.2.RELEASE</version>
 	</dependency>
+	
+	<dependency>
+	    <groupId>com.github.noraui</groupId>
+	    <artifactId>ojdbc7</artifactId>
+	    <version>12.1.0.2</version>
+	</dependency>
+<!-- https://mvnrepository.com/artifact/commons-lang/commons-lang -->
+<dependency>
+    <groupId>commons-lang</groupId>
+    <artifactId>commons-lang</artifactId>
+    <version>2.6</version>
+</dependency>
+
+
 	  	
   </dependencies>
   
