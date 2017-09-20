@@ -1,0 +1,222 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BACSDocument xmlns="http://www.bacs.co.uk/schemas" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.bacs.co.uk/schemas Extended_ISCD_Extract_Schema.xsd">
+   <Data>
+      <ISCDDocument>
+         <Version>1.0</Version>
+         <ProcessingDate>2017-04-24</ProcessingDate>
+         <Created>2017-04-21</Created>
+         <Bank BankCode="0942">
+            <SupervisoryBody>A</SupervisoryBody>
+            <AbbreviatedBankName>1ST ALL (AYR) CU LTD</AbbreviatedBankName>
+            <BankName>1ST ALLIANCE (AYRSHIRE) CREDIT UNION LTD</BankName>
+            <BankOffices SortCode="608330" BicBank="" BicBranch="" Suffix="00">
+               <BankOfficeTitle>1st Alliance Ayrshire CU</BankOfficeTitle>
+               <BankOfficeType>M</BankOfficeType>
+               <DateLastChanged>2017-04-03</DateLastChanged>
+               <PrintIndicator>0</PrintIndicator>
+               <Address>
+                  <AddresseeName>147 Main Street</AddresseeName>
+                  <PostalName/>
+                  <AddressLine1/>
+                  <AddressLine2/>
+                  <CityOrTown>Kilwinning</CityOrTown>
+                  <AreaOrCounty/>
+                  <Country>UNITED KINGDOM</Country>
+                  <PostCodeOutcode>KA13</PostCodeOutcode>
+                  <PostCodeIncode>6EQ</PostCodeIncode>
+                  <ZipCode/>
+               </Address>
+               <CHAPSEuroNull>
+                  <Status>N</Status>
+                  <DateLastChanged/>
+                  <DateClosed/>
+                  <RoutingBICBank/>
+                  <RoutingBICBranch/>
+                  <CHAPSEuroID/>
+                  <ReturnIndicator/>
+                  <RTGSIndicatorTargetStatus/>
+               </CHAPSEuroNull>
+               <CHAPSSterlingNull>
+                  <Status>N</Status>
+                  <ReturnIndicator/>
+                  <DateLastChanged/>
+                  <DateClosed/>
+                  <CHAPSSterlingID/>
+                  <RoutingBICBank/>
+                  <RoutingBICBranch/>
+               </CHAPSSterlingNull>
+               <CnCCCNull>
+                  <Status>N</Status>
+                  <ReturnIndicator/>
+                  <DateLastChanged/>
+                  <DateClosed/>
+                  <SettlementBank/>
+                  <DebitAgencySortCode/>
+                  <GBNIIndicator/>
+               </CnCCCNull>
+               <BACSServiceOffice>
+                  <Stream HandlingBank="0006" HandlingBankStream="01"/>
+                  <Status>A</Status>
+                  <AccountNumbersFlag>Y</AccountNumbersFlag>
+                  <DDIVoucherFlag>Y</DDIVoucherFlag>
+                  <DisallowedTransactions>
+                     <TransactionGroupCode>DR</TransactionGroupCode>
+                     <TransactionGroupCode>CR</TransactionGroupCode>
+                     <TransactionGroupCode>CU</TransactionGroupCode>
+                     <TransactionGroupCode>BS</TransactionGroupCode>
+                     <TransactionGroupCode>DV</TransactionGroupCode>
+                     <TransactionGroupCode>AU</TransactionGroupCode>
+                  </DisallowedTransactions>
+                  <DateLastChanged>2017-04-03</DateLastChanged>
+                  <DateClosed/>
+                  <RedirectionFromFlag/>
+                  <RedirectionToSortCode/>
+                  <SettlementBank>0006</SettlementBank>
+                  <SettlementSection>01</SettlementSection>
+                  <SettlementSubSection>00</SettlementSubSection>
+                  <ToDDaSO4/>
+               </BACSServiceOffice>
+               <FPServiceOfficeNull>
+                  <Status>N</Status>
+                  <AccountNumbersFlag/>
+                  <DateLastChanged/>
+                  <DateClosed/>
+                  <RedirectionFromFlag/>
+                  <RedirectionToSortCode/>
+                  <SettlementBankCode/>
+                  <SettlementBankConnection/>
+                  <HandlingBankCode/>
+                  <HandlingBankConnection/>
+                  <AgencyType/>
+               </FPServiceOfficeNull>
+               <Telephone>
+                  <InternationalPrefix/>
+                  <Std>0129</Std>
+                  <Number>4557123</Number>
+               </Telephone>
+               <SecondTelephoneNumber>
+                  <InternationalPrefix/>
+                  <Std/>
+                  <Number/>
+               </SecondTelephoneNumber>
+               <MainBankOfficeSortCode/>
+               <MajorLocation>KILMARNOCK</MajorLocation>
+               <MinorLocation/>
+               <OfficeOrPlaceName/>
+               <OfficeOrPlaceNameSecond/>
+               <SecondEntryIndicator>1</SecondEntryIndicator>
+               <OfficeTitle>1st Alliance Ayrshire CU LTD</OfficeTitle>
+               <DeletedDate/>
+               <NCBCountryCode/>
+            </BankOffices>
+         </Bank>
+         <Bank BankCode="0944">
+            <SupervisoryBody>A</SupervisoryBody>
+            <AbbreviatedBankName>1ST CLASS CREDIT UN</AbbreviatedBankName>
+            <BankName>1ST CLASS CREDIT UNION LIMITED</BankName>
+            <BankOffices SortCode="608326" BicBank="" BicBranch="" Suffix="00">
+               <BankOfficeTitle>1st Class Credit Union Ltd</BankOfficeTitle>
+               <BankOfficeType>M</BankOfficeType>
+               <DateLastChanged>2017-04-11</DateLastChanged>
+               <PrintIndicator>0</PrintIndicator>
+               <Address>
+                  <AddresseeName>105 Bell Street</AddresseeName>
+                  <PostalName/>
+                  <AddressLine1/>
+                  <AddressLine2/>
+                  <CityOrTown>Glasgow</CityOrTown>
+                  <AreaOrCounty/>
+                  <Country>UNITED KINGDOM</Country>
+                  <PostCodeOutcode>G4</PostCodeOutcode>
+                  <PostCodeIncode>0TQ</PostCodeIncode>
+                  <ZipCode/>
+               </Address>
+               <CHAPSEuroNull>
+                  <Status>N</Status>
+                  <DateLastChanged/>
+                  <DateClosed/>
+                  <RoutingBICBank/>
+                  <RoutingBICBranch/>
+                  <CHAPSEuroID/>
+                  <ReturnIndicator/>
+                  <RTGSIndicatorTargetStatus/>
+               </CHAPSEuroNull>
+               <CHAPSSterlingNull>
+                  <Status>N</Status>
+                  <ReturnIndicator/>
+                  <DateLastChanged/>
+                  <DateClosed/>
+                  <CHAPSSterlingID/>
+                  <RoutingBICBank/>
+                  <RoutingBICBranch/>
+               </CHAPSSterlingNull>
+               <CnCCCNull>
+                  <Status>N</Status>
+                  <ReturnIndicator/>
+                  <DateLastChanged/>
+                  <DateClosed/>
+                  <SettlementBank/>
+                  <DebitAgencySortCode/>
+                  <GBNIIndicator/>
+               </CnCCCNull>
+               <BACSServiceOffice>
+                  <Stream HandlingBank="0006" HandlingBankStream="01"/>
+                  <Status>A</Status>
+                  <AccountNumbersFlag>Y</AccountNumbersFlag>
+                  <DDIVoucherFlag>Y</DDIVoucherFlag>
+                  <DisallowedTransactions>
+                     <TransactionGroupCode>DR</TransactionGroupCode>
+                     <TransactionGroupCode>CR</TransactionGroupCode>
+                     <TransactionGroupCode>CU</TransactionGroupCode>
+                     <TransactionGroupCode>BS</TransactionGroupCode>
+                     <TransactionGroupCode>DV</TransactionGroupCode>
+                     <TransactionGroupCode>AU</TransactionGroupCode>
+                  </DisallowedTransactions>
+                  <DateLastChanged>2017-04-11</DateLastChanged>
+                  <DateClosed/>
+                  <RedirectionFromFlag/>
+                  <RedirectionToSortCode/>
+                  <SettlementBank>0006</SettlementBank>
+                  <SettlementSection>01</SettlementSection>
+                  <SettlementSubSection>00</SettlementSubSection>
+                  <ToDDaSO4/>
+               </BACSServiceOffice>
+               <FPServiceOfficeNull>
+                  <Status>N</Status>
+                  <AccountNumbersFlag/>
+                  <DateLastChanged/>
+                  <DateClosed/>
+                  <RedirectionFromFlag/>
+                  <RedirectionToSortCode/>
+                  <SettlementBankCode/>
+                  <SettlementBankConnection/>
+                  <HandlingBankCode/>
+                  <HandlingBankConnection/>
+                  <AgencyType/>
+               </FPServiceOfficeNull>
+               <Telephone>
+                  <InternationalPrefix/>
+                  <Std/>
+                  <Number/>
+               </Telephone>
+               <SecondTelephoneNumber>
+                  <InternationalPrefix/>
+                  <Std/>
+                  <Number/>
+               </SecondTelephoneNumber>
+               <MainBankOfficeSortCode/>
+               <MajorLocation>GLASGOW</MajorLocation>
+               <MinorLocation/>
+               <OfficeOrPlaceName/>
+               <OfficeOrPlaceNameSecond/>
+               <SecondEntryIndicator>1</SecondEntryIndicator>
+               <OfficeTitle>1st Class Credit Union Ltd</OfficeTitle>
+               <DeletedDate/>
+               <NCBCountryCode/>
+            </BankOffices>
+         </Bank>
+       </ISCDDocument>
+   </Data>
+   <SignatureMethod/>
+   <Signature/>
+</BACSDocument>

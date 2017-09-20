@@ -115,13 +115,13 @@ public class NewHandlar extends DefaultHandler {
 	    	}
 	    	Iterator<Bank> iterator = fullList.iterator();
 	    	int totalOfficeSize=0;
-	    	while(iterator.hasNext()) {
+	    /*	while(iterator.hasNext()) {
 	            Bank element = (Bank)iterator.next();
 	            totalOfficeSize = totalOfficeSize+element.getBankoffices().size();
 	            //System.out.print("Bank size" + element.getBankoffices().size());
 	            
 	         }
-	    	System.out.println("---"+totalOfficeSize);
+	    	System.out.println("---"+totalOfficeSize);*/
 	    }
 	}
 }

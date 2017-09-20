@@ -7,6 +7,8 @@ public class BankOffice {
 	private String Address;
 	private String ChapsCHAPSSterling_status;
 	private String FPServiceOffice_status;
+	
+	
 	public String getBankOffices_SORTCODE() {
 		return BankOffices_SORTCODE;
 	}
