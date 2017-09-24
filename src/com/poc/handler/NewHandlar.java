@@ -65,7 +65,7 @@ public class NewHandlar extends DefaultHandler {
 	    	// create list for multiple BankOffices. 
 	    	
 	    	bankoffice = new BankOffice();
-	    	System.out.println(attributes.getValue("SortCode"));
+	    	//System.out.println(attributes.getValue("SortCode"));
 	    	bankoffice.setBankOffices_SORTCODE(attributes.getValue("SortCode"));
 		}
 	    else if(qName.equalsIgnoreCase("FPServiceOffice")){
@@ -84,7 +84,7 @@ public class NewHandlar extends DefaultHandler {
 	    if (qName.equalsIgnoreCase("Bank")) {
 	    	
 	    	eiscDmapping.setBankoffices(bankOffices);
-	    	System.out.println("total no if offices : "+bankOffices.size());
+	    	//System.out.println("total no if offices : "+bankOffices.size());
 	    	fullList.add(eiscDmapping);
 	    	
 	    	bankOffices = null;
@@ -106,7 +106,7 @@ public class NewHandlar extends DefaultHandler {
 			}
 	    }
 	    if(qName.equalsIgnoreCase("Data")){
-	    	System.out.println("Total number of Bnaks :"+fullList.size());
+	    	//System.out.println("Total number of Bnaks :"+fullList.size());
 	    	//System.out.println("Total no count is"+getEiscDmapping().getBankoffices().size());
 	    	if(fullList.contains(eiscDmapping)){
 	   		

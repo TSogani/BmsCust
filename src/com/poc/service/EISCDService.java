@@ -13,8 +13,8 @@ public class EISCDService {
 	}
 
 	public boolean process(List eiscd){
-		eiscdDao = new EISCDDao();
+		//eiscdDao = new EISCDDao();
 		
-		return eiscdDao.loadEISCD(eiscd);
+		return eiscdDao.getInsert(eiscd);
 	}
 }

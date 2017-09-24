@@ -1,31 +1,39 @@
 package com.poc.test;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileFilter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
 import com.poc.beans.Bank;
-import com.poc.beans.BankOffice;
 import com.poc.handler.MyErrorHandler;
 import com.poc.handler.NewHandlar;
 import com.poc.service.EISCDService;
 
 public class EISCDTest {
 	
+	static EISCDService eiscdService;
+	
+	
+	
+	public void setEiscdService(EISCDService eiscdService) {
+		this.eiscdService = eiscdService;
+	}
+
+ 
 	static NewHandlar newHandlar;
 	static String sourcePath ="D:/FOLDER_TASK/STSEclipsPOC/EISCDUploader/src/com/poc/resource";
+	
 	public static File lastFileModified(String dir) { // get lastest modify file
 		File fl = new File(dir);
 		File[] files = fl.listFiles(new FileFilter() {
@@ -106,20 +114,7 @@ public class EISCDTest {
 		}
 	}
 
-	public static void main(String[] args) {
-		long startTime = System.currentTimeMillis();
 		
-		validationAndLoad();
-		moveFileToArchive(sourcePath,sourcePath+"/fp");	
-		
-		ArrayList<Bank> fullList = newHandlar.getFullList();
-		EISCDService eiscdService = new EISCDService();
-		boolean process = eiscdService.process(fullList);
-		if(process){
-			System.out.println("record insert successfully");
-		}else{
-			System.out.println("getting error while storing data to DB");
-		}
 /*
 		
 		String FILENAME = "D:/FOLDER_TASK/STSEclipsPOC/EISCDUploader/src/com/poc/resource/output/filename.txt";
@@ -178,8 +173,21 @@ public class EISCDTest {
 
 		}
 */
-		long endTime   = System.currentTimeMillis();
-		long totalTime = endTime - startTime;
-		System.out.println("total taken time : "+totalTime/1000);
+		
+		
+		
+	public static void m1(){
+		
+		validationAndLoad();
+		moveFileToArchive(sourcePath,sourcePath+"/fp");	
+		
+		ArrayList<Bank> fullList = newHandlar.getFullList();
+		//EISCDService eiscdService = new EISCDService();
+		boolean process = eiscdService.process(fullList);
+		if(process){
+			System.out.println("record insert successfully");
+		}else{
+			System.out.println("getting error while storing data to DB");
+		}
 	}
 }

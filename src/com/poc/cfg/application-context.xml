@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="spring"/>
+		<property name="password" value="spring"/>
+	</bean>
+	<bean class="org.springframework.jdbc.core.JdbcTemplate" id="jdbcTemplate">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	<bean  class="com.poc.dao.EISCDDao" id="eiscdDao">
+		<property name="jdbcTemplate" ref="jdbcTemplate"/>
+	</bean>
+	
+	<bean class="com.poc.service.EISCDService" id="eiscdService">
+		<property name="eiscdDao" ref="eiscdDao"></property>
+	</bean>
+	
+	<bean class="com.poc.test.EISCDTest" id="eiscdTest">
+		<property name="eiscdService" ref="eiscdService"></property>
+	</bean>
+	
+	
+</beans>
