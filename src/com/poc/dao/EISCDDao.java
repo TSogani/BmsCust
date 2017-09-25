@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Iterator;
 import java.util.List;
 
@@ -21,9 +22,11 @@ import com.poc.beans.BankOffice;
 public class EISCDDao {
 
 	
-	private final String QUERY_FOR_INSERT = "insert into TO_PMR_EISCD_MAPPING values(?,?,?,?,?)";
-	private final String QUEEY_FOR_UPDATE_ISACTIVE = "update TO_PMR_EISCD_MAPPING SET ISACTIVE='F' ";
-	private final String QUERY_FOR_DELETE_OLD_EISCD_RECORD = "delete from TO_PMR_EISCD_MAPPING where ISACTIVE='F'";
+	private final String QUERY_FOR_DELETE_OLD_EISCD_RECORD = "delete from TO_PMR_EISCD_MAPPING where ISDELETED='T'";
+	private final String QUERY_FOR_UPDATE_ISACTIVE_ISDELETED = "update TO_PMR_EISCD_MAPPING SET ISDELETED='T' where ISACTIVE='F' ";
+	private final String QUERY_FOR_UPDATE_ISACTIVE = "update TO_PMR_EISCD_MAPPING SET ISACTIVE='F' where iSACTIVE='T'";
+	private final String QUERY_FOR_INSERT = "insert into TO_PMR_EISCD_MAPPING values(?,?,?,?,?,?)";
+	
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -58,6 +61,8 @@ public class EISCDDao {
 							prepareStatement.setString(2,"dfdsafds");
 							prepareStatement.setInt(3, Integer.parseInt(bankOffice.getBankOffices_SORTCODE()));
 							prepareStatement.setString(4, "EISCD.xml");
+							prepareStatement.setString(5, "T");
+							prepareStatement.setString(6, "F");
 					 }
 				@Override
 				public int getBatchSize() {
@@ -148,19 +153,56 @@ public class EISCDDao {
 	}
 	
 	public boolean getInsert(List<?> eiscd){
-
+		System.out.println("inside getInsert");
+		Connection connection = null;
+		PreparedStatement prepareStatement = null;
+		PreparedStatement prepareStatement1 = null;
+		PreparedStatement prepareStatement2 = null;
+		PreparedStatement prepareStatement3 = null;
 		try {
 
-		Connection connection = jdbcTemplate.getDataSource().getConnection();
-		connection.setAutoCommit(false);
+			connection = jdbcTemplate.getDataSource().getConnection();
+			connection.setAutoCommit(false);
 		
-		PreparedStatement prepareStatement2 = connection.prepareStatement(QUEEY_FOR_UPDATE_ISACTIVE);
+		
+		Statement statement1 = connection.createStatement();
+		int executeUpdate = statement1.executeUpdate(QUERY_FOR_DELETE_OLD_EISCD_RECORD);
+		System.out.println("QUERY_FOR_DELETE_OLD_EISCD_RECORD : return :"+executeUpdate);
+		
+
+/*		PreparedStatement prepareStatement2 = connection.prepareStatement(QUERY_FOR_DELETE_OLD_EISCD_RECORD);
+		prepareStatement2.execute(QUERY_FOR_UPDATE_ISACTIVE_ISDELETED);
+*/		
+		
+		Statement statement2 = connection.createStatement();
+		int executeUpdate1 = statement2.executeUpdate(QUERY_FOR_UPDATE_ISACTIVE_ISDELETED);
+		System.out.println("QUERY_FOR_UPDATE_ISACTIVE_ISDELETED : return :"+executeUpdate1);
+		
+		/*PreparedStatement prepareStatement1 = connection.prepareStatement(QUERY_FOR_UPDATE_ISACTIVE_ISDELETED);
+		prepareStatement1.execute();
+		*/
+		
+		Statement statement3 = connection.createStatement();
+		int executeUpdate2 = statement3.executeUpdate(QUERY_FOR_UPDATE_ISACTIVE);
+		System.out.println("QUERY_FOR_UPDATE_ISACTIVE : return : "+executeUpdate2);
+		
+		/*PreparedStatement prepareStatement3 = connection.prepareStatement(QUERY_FOR_UPDATE_ISACTIVE);
+		prepareStatement3.execute();*/
+		
+/*		prepareStatement2 = connection.prepareStatement(QUERY_FOR_UPDATE_ISACTIVE);
 		prepareStatement2.execute(QUERY_FOR_DELETE_OLD_EISCD_RECORD);
-		PreparedStatement prepareStatement1 = connection.prepareStatement(QUEEY_FOR_UPDATE_ISACTIVE);
-		prepareStatement1.execute(QUEEY_FOR_UPDATE_ISACTIVE);
-		PreparedStatement prepareStatement = connection.prepareStatement(QUERY_FOR_INSERT);
-		
-			System.out.println("eiscd length"+eiscd.size());
+
+		prepareStatement3 = connection.prepareStatement(QUERY_FOR_UPDATE_ISACTIVE);
+		prepareStatement3.execute(QUERY_FOR_UPDATE_ISACTIVE_ISDELETED);
+
+		prepareStatement1 = connection.prepareStatement(QUERY_FOR_UPDATE_ISACTIVE);
+		prepareStatement1.execute(QUERY_FOR_UPDATE_ISACTIVE);
+*/		
+		prepareStatement = connection.prepareStatement(QUERY_FOR_INSERT);
+		System.out.println("Inserting record");
+//		QUERY_FOR_UPDATE_ISACTIVE_ISDELETED 
+
+		System.out.println("eiscd length"+eiscd.size());
 			Iterator<Bank> iterator = (Iterator<Bank>) eiscd.iterator();
 			while(iterator.hasNext()){
 				Bank bank = iterator.next();
@@ -178,6 +220,7 @@ public class EISCDDao {
 						prepareStatement.setInt(3, Integer.parseInt(bankOffice.getBankOffices_SORTCODE()));
 						prepareStatement.setString(4, "EISCD.xml");
 						prepareStatement.setString(5, "T");
+						prepareStatement.setString(6, "F");
 						prepareStatement.addBatch();
 				 }	
 			}
@@ -188,8 +231,61 @@ public class EISCDDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
+		}finally{
+			if (prepareStatement != null) {
+				try {
+					prepareStatement.close();
+				}catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if (prepareStatement != null) {
+				try {
+					prepareStatement.close();
+				}catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+			if (prepareStatement1 != null) {
+				try {
+					prepareStatement1.close();
+				}catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+			if (prepareStatement2 != null) {
+				try {
+					prepareStatement2.close();
+				}catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if (prepareStatement3 != null) {
+				try {
+					prepareStatement3.close();
+				}catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+
+			if(connection != null){
+				try{
+					connection.close();
+				}catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
-		
+		System.out.println("TEst return");
 		return true;
 	}
 }
