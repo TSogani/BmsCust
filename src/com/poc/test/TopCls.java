@@ -14,7 +14,7 @@ public class TopCls {
 		EISCDTest test= context.getBean("eiscdTest",EISCDTest.class);
 		
 		test.m1();
-		System.out.println("dev test");
+		System.out.println("dev test 1");
 		long endTime   = System.currentTimeMillis();
 		long totalTime = endTime - startTime;
 		System.out.println("total taken time : "+totalTime/1000);
