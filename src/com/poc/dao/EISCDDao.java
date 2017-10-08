@@ -1,32 +1,31 @@
 package com.poc.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.ParseException;
 import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
-import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCallback;
-import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.poc.beans.AUDITDto;
 import com.poc.beans.Bank;
 import com.poc.beans.BankOffice;
+import com.poc.test.EISCDTest;
 
 public class EISCDDao {
 
 	
-	private final String QUERY_FOR_DELETE_OLD_EISCD_RECORD = "delete from TO_PMR_EISCD_MAPPING where ISDELETED='T'";
-	private final String QUERY_FOR_UPDATE_ISACTIVE_ISDELETED = "update TO_PMR_EISCD_MAPPING SET ISDELETED='T' where ISACTIVE='F' ";
-	private final String QUERY_FOR_UPDATE_ISACTIVE = "update TO_PMR_EISCD_MAPPING SET ISACTIVE='F' where iSACTIVE='T'";
-	private final String QUERY_FOR_INSERT = "insert into TO_PMR_EISCD_MAPPING values(?,?,?,?,?,?)";
-	
+	private static final String QUERY_FOR_DELETE_OLD_EISCD_RECORD = "delete from TO_PMR_EISCD_MAPPING where ISDELETED='T'";
+	private static final String QUERY_FOR_UPDATE_ISACTIVE_ISDELETED = "update TO_PMR_EISCD_MAPPING SET ISDELETED='T' where ISACTIVE='F' ";
+	private static final String QUERY_FOR_UPDATE_ISACTIVE = "update TO_PMR_EISCD_MAPPING SET ISACTIVE='F' where iSACTIVE='T'";
+	private static final String QUERY_FOR_INSERT = "insert into TO_PMR_EISCD_MAPPING values(?,?,?,?,?,?)";
+	private static final String QUERY_FOR_AUDIT_TBL="INSERT INTO to_pmt_audit values(?,?,?,?)";
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -36,7 +35,7 @@ public class EISCDDao {
 	}
 
 	@Transactional
-	public boolean insetEISCDMapping(final List<Bank> eiscd){
+	/*public boolean insetEISCDMapping(final List<Bank> eiscd){
 		
 				Iterator<Bank> iterator = (Iterator<Bank>) eiscd.iterator();
 				while(iterator.hasNext()){
@@ -51,9 +50,9 @@ public class EISCDDao {
 					BankOffice bankOffice =(BankOffice) eiscd.iterator().next().getBankoffices().get(i);
 //					 System.out.println("Bank offices size"+bank.getBankoffices().size()+": "+i);i++;
 				
-/*					 while(iterator2.hasNext()){
+					 while(iterator2.hasNext()){
 						 BankOffice bankOffice = iterator2.next();
-*/ 
+ 
 					prepareStatement.setInt(1,Integer.parseInt(bank.getBank_Code()));
 							String bankName = bank.getBankName();
 							//String substring = bankName.substring(0, 34);
@@ -80,9 +79,9 @@ public class EISCDDao {
 		return true;
 	}
 	
+*/	
 	
-	
-	public boolean loadEISCD(List<?> eiscd){
+/*	public boolean loadEISCD(List<?> eiscd){
 		int i = 0;
 		String sqlQuery = "insert into TO_PMR_EISCD_MAPPING values(?,?,?)";
 		try {
@@ -119,7 +118,7 @@ public class EISCDDao {
 		return true;
 	}
 	
-
+*/
 	/*@SuppressWarnings("unchecked")
 	public boolean insertLoadData(List<?> eiscd){
 		
@@ -128,7 +127,7 @@ public class EISCDDao {
 		return true;
 	}*/
 	
-	static final public class PreparedStatementEiscdCreater implements PreparedStatementCreator{
+	/*static final public class PreparedStatementEiscdCreater implements PreparedStatementCreator{
 
 		@Override
 		public PreparedStatement createPreparedStatement(Connection con)
@@ -150,7 +149,7 @@ public class EISCDDao {
 		}
 		
 		
-	}
+	}*/
 	
 	public boolean getInsert(List<?> eiscd){
 		System.out.println("inside getInsert");
@@ -208,7 +207,8 @@ public class EISCDDao {
 				Bank bank = iterator.next();
 				
 				 Iterator<BankOffice> iterator2 = bank.getBankoffices().iterator();
-				 System.out.println("Bank offices size"+bank.getBankoffices().size());
+				 System.out.println("In Bank element BankOffices element size is : "+bank.getBankoffices().size());
+				 
 				 while(iterator2.hasNext()){
 					 BankOffice bankOffice = iterator2.next();
 						prepareStatement.setInt(1,Integer.parseInt(bank.getBank_Code()));
@@ -227,8 +227,16 @@ public class EISCDDao {
 			int[] executeBatch = prepareStatement.executeBatch();
 			System.out.println("total no of record inserted :"+executeBatch.length);
 			connection.commit();
+		}catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			EISCDTest.exceptionMessage = " \"Number format Execption\" : "+e.getMessage();
+			e.printStackTrace();
+			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			//connection = null;
+			//connection.isClosed();
+			EISCDTest.exceptionMessage = e.getMessage();
 			e.printStackTrace();
 			return false;
 		}finally{
@@ -237,6 +245,7 @@ public class EISCDDao {
 					prepareStatement.close();
 				}catch (SQLException e) {
 					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			}
@@ -245,6 +254,7 @@ public class EISCDDao {
 					prepareStatement.close();
 				}catch (SQLException e) {
 					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			}
@@ -254,6 +264,7 @@ public class EISCDDao {
 					prepareStatement1.close();
 				}catch (SQLException e) {
 					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			}
@@ -263,6 +274,7 @@ public class EISCDDao {
 					prepareStatement2.close();
 				}catch (SQLException e) {
 					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			}
@@ -271,6 +283,7 @@ public class EISCDDao {
 					prepareStatement3.close();
 				}catch (SQLException e) {
 					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			}
@@ -278,15 +291,37 @@ public class EISCDDao {
 
 			if(connection != null){
 				try{
+					connection.rollback();
 					connection.close();
 				}catch (SQLException e) {
 					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			}
 		}
 		System.out.println("TEst return");
 		return true;
+	}
+	
+	
+	public void updateAUDTBL(AUDITDto dto){
+		Connection connection = null;
+		try {
+			connection = jdbcTemplate.getDataSource().getConnection();
+			PreparedStatement prepareStatement = connection.prepareStatement(QUERY_FOR_AUDIT_TBL);
+			prepareStatement.setString(1, dto.getJobName());
+			prepareStatement.setTimestamp(2, dto.getCurrentDate());
+			prepareStatement.setString(3, dto.getFileName());
+			prepareStatement.setString(4,dto.getStatus());
+			
+			prepareStatement.execute();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
 

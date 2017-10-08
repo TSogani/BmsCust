@@ -86,7 +86,7 @@ public class NewHandlar extends DefaultHandler {
 	    	eiscDmapping.setBankoffices(bankOffices);
 	    	//System.out.println("total no if offices : "+bankOffices.size());
 	    	fullList.add(eiscDmapping);
-	    	
+	    	//System.out.println("size od FullList : "+fullList);
 	    	bankOffices = null;
 	    	eiscDmapping = null;
 	    }else if (qName.equalsIgnoreCase("AbbreviatedBankName")) {

@@ -5,12 +5,12 @@
          <Version>1.0</Version>
          <ProcessingDate>2017-04-24</ProcessingDate>
          <Created>2017-04-21</Created>
-         <Bank BankCode="0942">
+         <Bank BankCode="09sd42">
             <SupervisoryBody>A</SupervisoryBody>
             <AbbreviatedBankName>1ST ALL (AYR) CU LTD</AbbreviatedBankName>
             <BankName>1ST ALLIANCE (AYRSHIRE) CREDIT UNION LTD</BankName>
-            </Bank>
-         <Bank BankCode="0944">
+         </Bank>
+         <Bank BankCode="094324ererwe44">
             <SupervisoryBody>A</SupervisoryBody>
             <AbbreviatedBankName>1ST CLASS CREDIT UN</AbbreviatedBankName>
             <BankName>1ST CLASS CREDIT UNION LIMITED</BankName>
@@ -30,6 +30,7 @@
                   <PostCodeOutcode>G4</PostCodeOutcode>
                   <PostCodeIncode>0TQ</PostCodeIncode>
                   <ZipCode/>
+				  
                </Address>
                <CHAPSEuroNull>
                   <Status>N</Status>
